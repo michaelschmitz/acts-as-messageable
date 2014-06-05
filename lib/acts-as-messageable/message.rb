@@ -1,16 +1,16 @@
 require 'ancestry'
 
 module ActsAsMessageable
-  class Message < ::ActiveRecord::Base
-    include ActsAsMessageable::Scopes
+ class Message < ::ActiveRecord::Base
+   include ActsAsMessageable::Scopes
 
-    belongs_to :received_messageable, :polymorphic => true
-    belongs_to :sent_messageable,     :polymorphic => true
+   belongs_to :received_messageable, :polymorphic => true
+   belongs_to :sent_messageable,     :polymorphic => true
 
-    attr_accessor   :removed, :restored
-    cattr_accessor  :required
+   attr_accessor   :removed, :restored
+   cattr_accessor  :required
 
-    ActsAsMessageable.rails_api.new(self).default_scope("created_at desc")
+   #ActsAsMessageable.rails_api.new(self).default_scope("created_at desc")
 
     def open?
       self.opened?
